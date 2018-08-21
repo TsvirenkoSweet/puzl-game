@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pazle</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        header, footer{
+            background: rgba(252, 76, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        header{
+            height: 100px;
+        }
+        footer{
+            height: 50px;
+        }
+        main{
+            height: calc(100vh - 150px);
+        }
+        #pazl {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+        }
+        #start{
+            border: none;
+            background: rgba(252, 76, 255, 0.6);
+            color: #fff;
+            font-size: 30px;
+            font-weight: 700;
+            padding: 30px;
+        }
+        .pulse {
+            cursor: pointer;
+            box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+            animation: pulse 1.5s infinite;
+            }
+        .bgAnimate{
+            background: linear-gradient(180deg, #fc4cff, #cc4dce, #963098, #831385);
+            background-size: 800% 800%;
+            -webkit-animation: bgAnimate 27s ease infinite;
+            -moz-animation: bgAnimate 27s ease infinite;
+            animation: bgAnimate 27s ease infinite;
+        }
+            
+        @-webkit-keyframes bgAnimate {
+            0%{background-position:50% 0%}
+            50%{background-position:51% 100%}
+            100%{background-position:50% 0%}
+        }
+        @-moz-keyframes bgAnimate {
+            0%{background-position:50% 0%}
+            50%{background-position:51% 100%}
+            100%{background-position:50% 0%}
+        }
+        @keyframes bgAnimate { 
+            0%{background-position:50% 0%}
+            50%{background-position:51% 100%}
+            100%{background-position:50% 0%}
+        }
+        @-webkit-keyframes pulse {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+            }
+            70% {
+                -webkit-box-shadow: 0 0 0 40px rgba(204,169,44, 0);
+            }
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+            }
+            }
+            @keyframes pulse {
+            0% {
+                -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+            }
+            70% {
+                -moz-box-shadow: 0 0 0 40px rgba(204,169,44, 0);
+                box-shadow: 0 0 0 40px rgba(204,169,44, 0);
+            }
+            100% {
+                -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="bgAnimate"><h1>Игра Pazle - прокачай свои мозги</h1></header>
+    <main class="bgAnimate">
+        <div id="pazl">
+            <button id="start" class="pulse">Начать игру</button>
+        </div>
+    </main>
+    <footer class="bgAnimate">Все права - не права 2018</footer>
+    <script src="main.js"></script>
+</body>
+</html>
