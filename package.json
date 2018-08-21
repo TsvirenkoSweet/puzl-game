@@ -1,0 +1,19 @@
+{
+  "name": "puzl-game",
+  "version": "1.0.0",
+  "description": "MariNet",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cheerio": "^0.6.3",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.2.1",
+    "gulp-uglify": "^3.0.0",
+    "node-bourbon": "^4.2.8"
+  },
+  "dependencies": {
+    "browser-sync": "^2.24.6",
+    "gulp-rename": "^1.4.0"
+  }
+}

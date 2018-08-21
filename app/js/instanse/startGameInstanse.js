@@ -12,9 +12,9 @@ startGameInstance = function (settings){
 startGameInstanceProto = startGameInstance.prototype;
 
 startGameInstanceProto._init = function(){
-    var selector =  $(this._settings.node);
-    $(selector).click(this._onToggleClick.bind(this));
-    $(document).click(this._onItemClick.bind(this));
+    // var selector =  $(this._settings.node);
+    // $(selector).click(this._onToggleClick.bind(this));
+    // $(document).click(this._onItemClick.bind(this));
 };    
 
 startGameInstanceProto._onToggleClick = function(event){
