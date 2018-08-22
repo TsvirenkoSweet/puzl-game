@@ -46,7 +46,7 @@ gulp.task('watch', function () {
 	gulp.watch('sass/*.sass', ['styles']);
 	gulp.watch('app/js/instanse/*.js', ['scripts']);
 	gulp.watch('app/js/instanse/*.js').on("change", browserSync.reload);
-	gulp.watch('index.html').on('change', browserSync.reload);
+	gulp.watch('app/index.html').on('change', browserSync.reload);
 });
 
 gulp.task('default', ['browser-sync', 'watch']);
