@@ -12,6 +12,7 @@ startGameInstance = function (settings){
 startGameInstanceProto = startGameInstance.prototype;
 
 startGameInstanceProto._init = function(){
+    //Инициализация области игры
     document.getElementById("start").addEventListener("click", this._startButtonClick.bind(this));
     // var selector =  $(this._settings.node);
     // $(selector).click(this._onToggleClick.bind(this));
@@ -63,9 +64,22 @@ startGameInstanceProto._createGameArea = function(){
             but.className = "uploadFile";
             lab.appendChild(but);
             butFile.appendChild(lab);
+            var uploadImage = document.createElement("img");
+            uploadImage.setAttribute("id", "output");
+            uploadImage.setAttribute("alt", "image");
+            div.appendChild(uploadImage);
         }
     }
     
+    //Выбор фотки
+    document.getElementById("uploadFile").addEventListener("change", this._showPrevImage.bind(this));
+};
+
+//Отображение превью фотки
+startGameInstanceProto._showPrevImage = function(el){
+    console.log('log');
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(el.target.files[0]);
 };
 
 startGameInstanceProto = null;
