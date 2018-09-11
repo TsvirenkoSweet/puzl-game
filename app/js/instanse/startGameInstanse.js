@@ -14,6 +14,10 @@ startGameInstanceProto = startGameInstance.prototype;
 startGameInstanceProto._init = function(){
     //Инициализация области игры
     document.getElementById("start").addEventListener("click", this._startButtonClick.bind(this));
+    //Выбор фотки
+    document.addEventListener("change", this._showPrevImage.bind(this));
+    //Рисуем блоки для игры
+    document.addEventListener("click", this._createPazzleArea.bind(this));
     // var selector =  $(this._settings.node);
     // $(selector).click(this._onToggleClick.bind(this));
     // $(document).click(this._onItemClick.bind(this));
@@ -47,13 +51,14 @@ startGameInstanceProto._startButtonClick = function(el){
 //Создаем новые блоки для игры
 startGameInstanceProto._createGameArea = function(){
     var element = document.getElementById("pazl");
-    for(var i = 0; i < 3; i += 1) {
+    for(var i = 0; i < 3; i ++) {
         var div = document.createElement("div");
         div.setAttribute("id", "pazleBlock-"+ i);
         div.className = "pazleBlock";
         element.appendChild(div);
         if(i == 0){
             var lab = document.createElement("label");
+            lab.setAttribute("id", "labelBlock");
             lab.setAttribute("for", "uploadFile");
             var text = document.createTextNode("Загрузить фото");
             lab.appendChild(text);
@@ -69,18 +74,64 @@ startGameInstanceProto._createGameArea = function(){
             uploadImage.setAttribute("alt", "image");
             div.appendChild(uploadImage);
         }
+        if(i == 1){
+            div.className = "customizeBlock pazleBlock";
+        }
     }
-    
-    //Выбор фотки
-    document.getElementById("uploadFile").addEventListener("change", this._showPrevImage.bind(this));
 };
 
 //Отображение превью фотки
 startGameInstanceProto._showPrevImage = function(el){
-    console.log('log');
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(el.target.files[0]);
+    if(el.target && el.target.id == 'uploadFile'){
+        var lab = document.getElementById("labelBlock");
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(el.target.files[0]);
+        output.classList.add("output");
+        var bBlock = document.getElementById('pazleBlock-0');
+        bBlock.classList.add("baseImageContainer");
+        document.getElementById('labelBlock').innerHTML= "Изменить фотографию"; 
+        var but = document.createElement("input");
+        var butFile = document.getElementById("pazleBlock-0");
+        but.setAttribute("type", "file");
+        but.setAttribute("id", "uploadFile");
+        but.className = "uploadFile";
+        lab.appendChild(but);
+        butFile.appendChild(lab);
+        var startGameButton = document.createElement("div");
+        startGameButton.setAttribute("id", "startGame");
+        var startGameButtonText = document.createElement("div");
+        var textStartButton = document.createTextNode("Старт");
+        startGameButtonText.classList.add("pulseText");
+        startGameButton.appendChild(startGameButtonText);
+        startGameButtonText.appendChild(textStartButton);
+        butFile.appendChild(startGameButton);
+    }
 };
+startGameInstanceProto._createPazzleArea = function(el){
+    if(el.target && (el.target.id == 'startGame' || el.target.className == 'pulseText')){
+        var hideBlock = document.getElementById("pazleBlock-0");
+        hideBlock.classList.add('hide');
+        var custBl = document.getElementsByClassName('customizeBlock')[0];
+        var i = 1;
+        
+        var settingBlock = setInterval(function(){
+            if(i > 16){
+                clearInterval(settingBlock);
+            }
+            else{
+                var pazlBlock = document.createElement("div");
+                pazlBlock.dataset.findPazleId = i;
+                pazlBlock.classList.add('find-pazle');
+                custBl.appendChild(pazlBlock);
+                pazlBlock.innerHTML = i;
+                i++;
+                setTimeout(function(){
+                    pazlBlock.style.opacity = 1;
+                }, 25)
+            }
+        }, 25);
+    }
+}
 
 startGameInstanceProto = null;
 document.addEventListener('DOMContentLoaded', function(){ 
