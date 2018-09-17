@@ -36,7 +36,7 @@ gulp.task('scripts', function() {
 		'./app/js/instanse/*.js'
 		])
 		.pipe(concat('libs.min.js'))
-		.pipe(uglify()) // Minify common.js
+		// .pipe(uglify()) // Minify common.js
 		.pipe(gulp.dest('./app/js/'));
 });
 

@@ -77,6 +77,9 @@ startGameInstanceProto._createGameArea = function(){
         if(i == 1){
             div.className = "customizeBlock pazleBlock";
         }
+        if(i == 2){
+            div.className = "findPuzleContainer pazleBlock";
+        }
     }
 };
 
@@ -107,16 +110,83 @@ startGameInstanceProto._showPrevImage = function(el){
         butFile.appendChild(startGameButton);
     }
 };
+startGameInstanceProto._rundomSort = function(arr){
+    var el = arr.length, variable, index;
+    while (el > 0) {
+        index = Math.floor(Math.random() * el);
+        el--;
+        variable = arr[el];
+        arr[el] = arr[index];
+        arr[index] = variable;
+    }
+    return arr;
+}
+
 startGameInstanceProto._createPazzleArea = function(el){
     if(el.target && (el.target.id == 'startGame' || el.target.className == 'pulseText')){
         var hideBlock = document.getElementById("pazleBlock-0");
         hideBlock.classList.add('hide');
         var custBl = document.getElementsByClassName('customizeBlock')[0];
+        var findPuzleContainer = document.getElementsByClassName('findPuzleContainer')[0];
         var i = 1;
         
         var settingBlock = setInterval(function(){
             if(i > 16){
                 clearInterval(settingBlock);
+                var putBGImage = document.getElementById('output').src;
+                var moveArray = [];
+                var y = 0;
+                var step = 0;
+                for (var f = 0; f < 4; f++) {
+                    var x = 0;
+                    for (var j = 0; j < 4; j++) {
+                        var pazlMoveBlock = document.createElement("div");
+                        pazlMoveBlock.dataset.movePazleId = j + 1 + step;
+                        pazlMoveBlock.style.backgroundImage = "url('"+ putBGImage +"')";
+                        pazlMoveBlock.classList.add('move-puzle');
+                        pazlMoveBlock.setAttribute('id', 'move-puzle-'+ j + step);
+                        pazlMoveBlock.innerHTML = j + 1 + step;
+                        pazlMoveBlock.style.backgroundPositionY = y +'px';
+                        if (j % 4 == 0){
+                            x = 0;
+                            pazlMoveBlock.style.backgroundPositionX = x +'px';
+                            moveArray.push(pazlMoveBlock);
+                        }
+                        else{
+                            x+= -112.5;
+                            pazlMoveBlock.style.backgroundPositionX = x +'px';
+                            moveArray.push(pazlMoveBlock);
+                        }
+                    }
+                    y+= -112.5;
+                    step+=4
+                }
+                var targetArr = this._rundomSort(moveArray);
+                for (var f = 0; f < targetArr.length; f++) {
+                    console.log(targetArr[f]);
+                    targetArr[f].setAttribute('draggable', true);
+                    targetArr[f].setAttribute('ondragstart', 'drag(event)');
+                    findPuzleContainer.appendChild(targetArr[f]);
+                }
+document.getElementById('pazleBlock-1').setAttribute('ondrop', 'drop(event)');
+document.getElementById('pazleBlock-1').setAttribute('ondragover', 'allowDrop(event)');
+document.getElementById('pazleBlock-2').setAttribute('ondrop', 'drop(event)');
+document.getElementById('pazleBlock-2').setAttribute('ondragover', 'allowDrop(event)');
+                // var doubles = this._rundomSort(moveArray).map(function(i, t) {
+                //     console.log(i, t);
+                //     });
+                // console.log(doubles);
+                
+
+                // for(var z = 0; z < 16; z++){
+                //     var res = '';
+                //     console.log(moveArray);
+                //     console.log(res = moveArray[Math.floor(Math.random()*moveArray.length)]);
+                //     console.log(res.dataset.movePazleId);
+                //     console.log(delete moveArray[res.dataset.movePazleId - 1]);
+                //     rundomArr.push(res.dataset.movePazleId);
+                // }
+                // console.log('итог'+ rundomArr);
             }
             else{
                 var pazlBlock = document.createElement("div");
@@ -129,7 +199,8 @@ startGameInstanceProto._createPazzleArea = function(el){
                     pazlBlock.style.opacity = 1;
                 }, 25)
             }
-        }, 25);
+        }.bind(this), 25);
+        
     }
 }
 

@@ -45,8 +45,8 @@ main
     background-position: -100px -100px
 .pazleBlock
     margin: 0 50px
-    width: 500px
-    height: 500px
+    width: 450px
+    height: 450px
     background: rgba(255, 255, 255, 0.37)
     display: flex
     align-items: center
@@ -131,6 +131,23 @@ main
         float: left
         opacity: 0
         transition: all 0.7s ease-in-out
+.findPuzleContainer
+    display: inline-block
+    .move-puzle
+        background: rgba(255, 0, 0, 0.6)
+        background-position-y: 0
+        width: 25%
+        height: 25%
+        outline: 2px solid green
+        outline-offset: -3px
+        color: transparent
+        text-align: right
+        text-indent: -57px
+        text-shadow: -9px 8px 0px white
+        float: left
+        // opacity: 0
+        transition: all 0.7s ease-in-out
+        background-size: 450px 450px
 @keyframes pulseText
     0% 
         transform: scale(1)

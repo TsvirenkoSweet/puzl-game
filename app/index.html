@@ -73,6 +73,25 @@
     col.addEventListener('drop', this.handleDrop, false);
   });
 })();
+function allowDrop(ev) {
+    ev.preventDefault();
+    
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log(data);
+    ev.target.appendChild(document.getElementById(data));
+    // console.log(ev.target.children[0].attributes.draggable == 'false');
+    // ev.target.children[0].setAttribute('draggable', false);
+    
+}
 
     </script>
 </body>
