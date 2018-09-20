@@ -17,7 +17,8 @@ main
     display: flex
     justify-content: center
     width: 100%
-    align-items: center
+    align-items: end
+    flex-wrap: wrap
 #start
     border: none
     background: rgba(252, 76, 255, 0.6)
@@ -130,7 +131,11 @@ main
         text-shadow: -9px 8px 0px white
         float: left
         opacity: 0
+        background-size: 450px 450px
         transition: all 0.7s ease-in-out
+    .find-pazle.clear
+        border: 0px solid green
+        outline: 0px solid green
 .findPuzleContainer
     display: inline-block
     .move-puzle
@@ -148,6 +153,52 @@ main
         // opacity: 0
         transition: all 0.7s ease-in-out
         background-size: 450px 450px
+    .move-puzle.accept
+        background-image: url(https://www.tututix.com/wp-content/uploads/2015/01/green-check.png) !important
+        background-position: 0 0 !important
+        background-size: 100% 100% !important
+    .move-puzle.fullEnd
+        background-image: url(https://www.tututix.com/wp-content/uploads/2015/01/green-check.png) !important
+        background-position: 0 0 !important
+        background-size: 100% 100%
+        width: 100%
+        height: 100%
+        outline: 0px solid green
+#timer
+    width: 100%
+    background: #fff
+    height: 100px
+    font-size: 60px
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #851687
+[draggable]
+  user-select: none
+
+.drag-list
+  overflow: hidden
+  margin: 10px auto
+  width: 500px
+  border: 1px solid #ccc
+
+.move-puzle
+  float: left
+  padding: 50px 20px
+  width: 25%
+  text-align: center
+  color: #555
+  background: #ddd
+  border: 1px solid #ccc
+  box-sizing: border-box
+  transition: 0.25s
+
+.drag-start
+  opacity: 0.8
+
+.drag-enter
+  opacity: 0.5
+  transform: scale(0.9)
 @keyframes pulseText
     0% 
         transform: scale(1)

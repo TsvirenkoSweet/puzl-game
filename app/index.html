@@ -10,88 +10,89 @@
     <header class="bgAnimate"><h1>Игра Pazle - прокачай свои мозги</h1></header>
     <main class="bgAnimate">
         <div id="pazl">
+            <div id="timer"></div>
             <button id="start" class="pulse">Начать игру</button>
         </div>
         
-        <div id="columns-full">
+        <!-- <div id="columns-full">
             <div class="column"><span>A</span></div>
             <div class="column"><span>B</span></div>
             <div class="column"><span>D</span></div>
             <div class="column"><span>C</span></div>
-        </div>
+        </div> -->
     </main>
     <footer class="bgAnimate">Все права - не права 2018</footer>
     <script src="js/libs.min.js"></script>
     <script src="main.js"></script>
     <script>
 
-(function() {
+// (function() {
     
-  var id_ = 'columns-full';
-  var cols_ = document.querySelectorAll('#' + id_ + ' .column');
-  var dragSrcEl_ = null;
+//   var id_ = 'columns-full';
+//   var cols_ = document.querySelectorAll('#' + id_ + ' .column');
+//   var dragSrcEl_ = null;
 
-  this.handleDragStart = function(e) {
-    e.dataTransfer.effectAllowed = 'move';
-    console.log(e.dataTransfer);
-    e.dataTransfer.setData('text/html', this.innerHTML);
-    console.log(e.dataTransfer.setData('text/html', this.innerHTML));
-    dragSrcEl_ = this;
-  };
+//   this.handleDragStart = function(e) {
+//     e.dataTransfer.effectAllowed = 'move';
+//     console.log(e.dataTransfer);
+//     e.dataTransfer.setData('text/html', this.innerHTML);
+//     console.log(e.dataTransfer.setData('text/html', this.innerHTML));
+//     dragSrcEl_ = this;
+//   };
 
-  this.handleDragOver = function(e) {
-    if (e.preventDefault) {
-        // Для отпускания элемента
-      e.preventDefault(); 
-    }
-    return false;
-  };
+//   this.handleDragOver = function(e) {
+//     if (e.preventDefault) {
+//         // Для отпускания элемента
+//       e.preventDefault(); 
+//     }
+//     return false;
+//   };
 
-  this.handleDrop = function(e) {
-    // this/e.target это текущий элемент, который взят
+//   this.handleDrop = function(e) {
+//     // this/e.target это текущий элемент, который взят
 
-    if (e.stopPropagation) {
-      e.stopPropagation();
-    }
+//     if (e.stopPropagation) {
+//       e.stopPropagation();
+//     }
 
-    // Если отпускаем в текущее окошко, то ничего не делаем
-    if (dragSrcEl_ != this) {
-      dragSrcEl_.innerHTML = this.innerHTML;
-      this.innerHTML = e.dataTransfer.getData('text/html');
-    }
+//     // Если отпускаем в текущее окошко, то ничего не делаем
+//     if (dragSrcEl_ != this) {
+//       dragSrcEl_.innerHTML = this.innerHTML;
+//       this.innerHTML = e.dataTransfer.getData('text/html');
+//     }
 
-    return false;
-  };
+//     return false;
+//   };
 
 
 
-  [].forEach.call(cols_, function (col) {
-    // Включаем захват элементов
-    col.setAttribute('draggable', 'true');  
-    col.addEventListener('dragstart', this.handleDragStart, false);
-    col.addEventListener('dragover', this.handleDragOver, false);
-    col.addEventListener('drop', this.handleDrop, false);
-  });
-})();
-function allowDrop(ev) {
-    ev.preventDefault();
+//   [].forEach.call(cols_, function (col) {
+//     // Включаем захват элементов
+//     col.setAttribute('draggable', 'true');  
+//     col.addEventListener('dragstart', this.handleDragStart, false);
+//     col.addEventListener('dragover', this.handleDragOver, false);
+//     col.addEventListener('drop', this.handleDrop, false);
+//   });
+// })();
+// function allowDrop(ev) {
+//     ev.preventDefault();
     
-}
+// }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+// function drag(ev) {
+//     ev.dataTransfer.setData("text", ev.target.id);
     
-}
+// }
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    console.log(data);
-    ev.target.appendChild(document.getElementById(data));
-    // console.log(ev.target.children[0].attributes.draggable == 'false');
-    // ev.target.children[0].setAttribute('draggable', false);
+// function drop(ev) {
+//     ev.preventDefault();
+//     var data = ev.dataTransfer.getData("text");
+//     console.log(data);
+//     ev.target.appendChild(document.getElementById(data));
+//     // console.log(ev.target.children[0].attributes.draggable == 'false');
+//     // ev.target.children[0].setAttribute('draggable', false);
     
-}
+// }
 
     </script>
 </body>
