@@ -167,12 +167,20 @@ main
 #timer
     width: 100%
     background: #fff
-    height: 100px
+    height: 0
+    opacity: 0
+    visibility: hidden
     font-size: 60px
     display: flex
     align-items: center
     justify-content: center
     color: #851687
+    transition: all 0.5s ease-in-out
+#timer.active
+    height: 100px
+    opacity: 1
+    visibility: visible
+    transition: all 0.5s ease-in-out
 [draggable]
   user-select: none
 
